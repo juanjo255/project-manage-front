@@ -22,11 +22,10 @@ import Profile from 'pages/profile/Profile';
 // import PrivateRoute from 'components/PrivateRoute';
 
 const httpLink = createHttpLink({
-  uri: 'https://dev-stack2.herokuapp.com/graphql' // link del back
+  uri: 'https://management-project-back2021.herokuapp.com/graphql' // link del back
 });
 
 const authLink = setContext((_, { headers }) => {
-
   //traer el token de autenticacion desde el almacenamiento local si excitste
   const token = JSON.parse(localStorage.getItem('token'));
 
