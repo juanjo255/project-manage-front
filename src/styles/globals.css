@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .sidebar {
-  @apply w-64 bg-green-300 shadow flex-col justify-between;
+  @apply w-64 bg-blue-500 shadow flex-col justify-between;
 }
 
 .sidebar-route {

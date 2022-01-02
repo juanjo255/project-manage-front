@@ -68,23 +68,21 @@ const IndexProyectos = () => {
 
 const AccordionProyecto = ({ proyecto }) => {
   const [showDialog, setShowDialog] = useState(false);
+  const [inscriptionState, setInscriptionState] = useState('');
   const {data:dataAvances, loading}  = useQuery(FILTRAR_AVANCES, {variables:{ProjectId:proyecto._id}});
   const {userData} = useUser();
-  var EstadoInscriptionUser
-
 
   useEffect(() => {
-    console.log("puta vida", dataAvances);
-  }, [dataAvances])
+    if (userData && proyecto.Inscriptions) {
+      const flt = proyecto.Inscriptions.filter((el) => el.Student._id === userData._id);
+      if (flt.length > 0) {
+        setInscriptionState(flt[0].Inscription_State);
+      }
+    }
+  }, [userData, proyecto.Inscriptions]);
 
   if (loading){return <div>Loading...</div> };
   
-  proyecto.Inscriptions.map ((ins)=>{
-    if (ins.Student._id === userData._id){
-      EstadoInscriptionUser = ins.Inscription_State
-      return EstadoInscriptionUser;
-    }return null;
-  })
   return (
     <div>
       <AccordionStyled>
@@ -97,13 +95,15 @@ const AccordionProyecto = ({ proyecto }) => {
         </AccordionSummaryStyled>
 
         <AccordionDetailsStyled>
-        <PrivateComponent roleList={['ADMINISTRATOR', 'LEADER']}>
-            <div className='flex w-full justify-end'>
+
+          { inscriptionState === 'ACCEPTED' || ['ADMINISTRATOR', 'LEADER'].includes(userData.Role) ?
+            (<div className='flex w-full justify-end'>
               <div onClick={() => {setShowDialog(true);}}>
                 <i className='mx-4 fas fa-pen  hover:text-white cursor-pointer'/>
               </div>
-            </div>
-          </PrivateComponent>
+            </div>):(<></>)
+          }          
+
           <div>Liderado por: {proyecto.Leader.Name} {proyecto.Leader.Lastname}</div>
           <div>Documento: {proyecto.Leader.Identification}</div>
           <div className='flex'>
@@ -115,14 +115,14 @@ const AccordionProyecto = ({ proyecto }) => {
             <InscripcionProyecto
               idProyecto={proyecto._id}
               estado={proyecto.ProjectState}
-              inscripcion={proyecto.Inscriptions}
+              estadoInscripcion={inscriptionState}
             />
         </PrivateComponent>
         </AccordionDetailsStyled>
         <AccordionDetailsStyled>
           
         {  
-        (dataAvances && EstadoInscriptionUser === "ACCEPTED" ? ( dataAvances.filtrarAvance.map ((avance)=>{
+        (dataAvances && inscriptionState === "ACCEPTED" ? ( dataAvances.filtrarAvance.map ((avance)=>{
           return (<div className='flex flex-col bg-white' key={nanoid()}>
             <span>Avance creado por {avance.CreatedBy.Name +" "+ avance.CreatedBy.Lastname}</span>
             <p> {avance.Observations} </p>
@@ -154,19 +154,9 @@ const Objetivo = ({ tipo, descripcion }) => {
   );
 };
 
-const InscripcionProyecto = ({ idProyecto, estado, inscripcion }) => {
-  const [estadoInscripcion, setEstadoInscripcion] = useState('');
+const InscripcionProyecto = ({ idProyecto, estado, estadoInscripcion }) => {
   const [crearInscripcion, { data, loading, error }] = useMutation(CREAR_INSCRIPCION);
   const { userData } = useUser();
-
-  useEffect(() => {
-    if (userData && inscripcion) {
-      const flt = inscripcion.filter((el) => el.Student._id === userData._id);
-      if (flt.length > 0) {
-        setEstadoInscripcion(flt[0].Inscription_State);
-      }
-    }
-  }, [userData, inscripcion]);
 
   useEffect(() => {
     if (data) {
