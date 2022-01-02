@@ -1,23 +1,26 @@
 import { gql } from '@apollo/client';
 
 const PROYECTOS = gql`
-  query Proyectos {
-    Proyectos {
+  query Projects {
+    Projects {
       _id
-      nombre
-      estado
-      objetivos {
-        _id
-        descripcion
-        tipo
+      
+      NameProject
+      ProjectState
+      Objectives {
+        Description
+        Type
       }
-      lider {
+      Leader {
         _id
-        correo
+        Email
+        Name
+        Lastname
+        Identification
       }
-      inscripciones {
-        estado
-        estudiante {
+      Inscriptions {
+        Inscription_State
+        Student {
           _id
         }
       }

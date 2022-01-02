@@ -1,6 +1,12 @@
 FROM node:14
-WORKDIR /app
-COPY package.json ./
-COPY yarn.lock ./
+
+WORKDIR /usr/src
+
+COPY ["./package.json", "./yarn.lock", "/usr/src/"]
+
+COPY ./ /usr/src/
+
 RUN yarn install
+
 CMD ["yarn", "start"]
+

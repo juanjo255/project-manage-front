@@ -5,33 +5,32 @@ import { UserContext } from 'context/userContext';
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Index from 'pages/Index';
-import Page2 from 'pages/Page2';
-import IndexCategory1 from 'pages/category1/Index';
-import Category1 from 'pages/category1/CategoryPage1';
-import IndexUsuarios from 'pages/usuarios';
-import EditarUsuario from 'pages/usuarios/editar';
+import IndexUsuarios from './pages/usuarios/IndexUsuarios';
+import EditarUsuario from './pages/usuarios/EditarUsuario';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
-import IndexProyectos from 'pages/proyectos/Index';
+import IndexProyectos from 'pages/proyectos/IndexProyectos';
 import jwt_decode from 'jwt-decode';
 import 'styles/globals.css';
 import 'styles/tabla.css';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
-import IndexInscripciones from 'pages/inscripciones';
-import Profile from 'pages/profile';
+import IndexInscripciones from 'pages/inscripciones/IndexInscripciones';
+import Profile from 'pages/profile/Profile';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://dev-stack2.herokuapp.com/graphql' // link del back
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
+
+  //traer el token de autenticacion desde el almacenamiento local si excitste
   const token = JSON.parse(localStorage.getItem('token'));
-  // return the headers to the context so httpLink can read them
+
+  //devolver los headers al contexto para que lo pueda leer
   return {
     headers: {
       ...headers,
@@ -43,6 +42,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
+  
 });
 
 function App() {
@@ -50,7 +50,6 @@ function App() {
   const [authToken, setAuthToken] = useState('');
 
   const setToken = (token) => {
-    console.log('set token', token);
     setAuthToken(token);
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
@@ -62,15 +61,13 @@ function App() {
   useEffect(() => {
     if (authToken) {
       const decoded = jwt_decode(authToken);
-      console.log('decoded token', decoded);
       setUserData({
         _id: decoded._id,
-        nombre: decoded.nombre,
-        apellido: decoded.apellido,
-        identificacion: decoded.identificacion,
-        correo: decoded.correo,
-        rol: decoded.rol,
-        foto: decoded.foto,
+        Name: decoded.Name,
+        Lastname: decoded.Lastname,
+        Identification: decoded.Identification,
+        Email: decoded.Email,
+        Role: decoded.Role,
       });
     }
   }, [authToken]);
@@ -89,9 +86,6 @@ function App() {
                 <Route path='/proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
                 <Route path='/perfil' element={<Profile />} />
-                <Route path='page2' element={<Page2 />} />
-                <Route path='category1' element={<IndexCategory1 />} />
-                <Route path='category1/page1' element={<Category1 />} />
               </Route>
               <Route path='/auth' element={<AuthLayout />}>
                 <Route path='register' element={<Register />} />
