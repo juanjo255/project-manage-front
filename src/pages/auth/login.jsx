@@ -7,7 +7,7 @@ import { useAuth } from 'context/authContext';
 import { useNavigate } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import wave from 'media/wave.png'
-import logo3 from 'media/logo3.png'
+import logo3 from 'media/logoparaprojecto.png'
 import team from 'media/team.svg'
 import { toast } from 'react-toastify';
 

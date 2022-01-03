@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
 import PrivateComponent from './PrivateComponent';
-import logo3 from 'media/logo3.png'
+import researchProject from 'media/EAFITlogo.png'
 
 const SidebarLinks = () => {
   return (
@@ -43,7 +43,7 @@ const Logout = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src={logo3} alt='Logo' className='w-40' />
+      <img src={researchProject} alt='Logo' className='w-40' />
     </div>
   );
 };
@@ -54,7 +54,7 @@ const Sidebar = () => {
     <div className='flex flex-col md:flex-row flex-no-wrap md:h-full'>
     {/* Sidebar starts */}
 
-    <div className='sidebar probando hidden md:flex'>
+    <div className='sidebar acordion hidden md:flex'>
       <div className='px-8'>
         <Logo />
         <SidebarLinks />

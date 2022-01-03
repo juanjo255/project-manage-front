@@ -23,7 +23,7 @@ import { EDITAR_OBSERVACION } from 'graphql/avance/mutations';
 import { nanoid } from 'nanoid';
 
 const IndexProyectos = () => {
-  const { data: queryData, loading, error } = useQuery(PROYECTOS);
+  const { data: queryData, loading, error, refetch } = useQuery(PROYECTOS);
   const {userData} = useUser()
 
   useEffect(() => {
@@ -48,16 +48,18 @@ const IndexProyectos = () => {
             </button>
           </div>
         </PrivateComponent>
+        <div>
         {userData.Role === 'LEADER' ? (queryData.Projects.map((proyect) => {
           return (<div key={nanoid()} >
-            {(userData._id === proyect.Leader._id ) ? (<AccordionProyecto proyecto={proyect} key={proyect._id} />):(
+            {(userData._id === proyect.Leader._id ) ? (<AccordionProyecto proyecto={proyect} key={proyect._id} refetch={refetch} />):(
               <></>)}
           </div>)
         })) : (
           queryData.Projects.map((proyect) => {
-            return <AccordionProyecto proyecto={proyect} key={proyect._id} />
+            return <AccordionProyecto proyecto={proyect} key={proyect._id} refetch={refetch} />
           })
         )}
+        </div>
       </div>
     );
   }
@@ -66,7 +68,7 @@ const IndexProyectos = () => {
 </button></>;
 };
 
-const AccordionProyecto = ({ proyecto }) => {
+const AccordionProyecto = ({ proyecto, refetch }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [inscriptionState, setInscriptionState] = useState('');
   const {data:dataAvances, loading}  = useQuery(FILTRAR_AVANCES, {variables:{ProjectId:proyecto._id}});
@@ -104,8 +106,8 @@ const AccordionProyecto = ({ proyecto }) => {
             </div>):(<></>)
           }          
 
-          <div>Liderado por: {proyecto.Leader.Name} {proyecto.Leader.Lastname}</div>
-          <div>Documento: {proyecto.Leader.Identification}</div>
+          <div className='font-semibold'>Liderado por: {proyecto.Leader.Name} {proyecto.Leader.Lastname}</div>
+          <div className='font-semibold'>Documento: {proyecto.Leader.Identification}</div>
           <div className='flex'>
             {proyecto.Objectives.map((objetivo) => {
               return <Objetivo tipo={objetivo.Type} descripcion={objetivo.Description} key={nanoid()} />;
@@ -116,6 +118,7 @@ const AccordionProyecto = ({ proyecto }) => {
               idProyecto={proyecto._id}
               estado={proyecto.ProjectState}
               estadoInscripcion={inscriptionState}
+              refetch={refetch}
             />
         </PrivateComponent>
         </AccordionDetailsStyled>
@@ -124,7 +127,7 @@ const AccordionProyecto = ({ proyecto }) => {
         {  
         (dataAvances && inscriptionState === "ACCEPTED" ? ( dataAvances.filtrarAvance.map ((avance)=>{
           return (<div className='flex flex-col bg-white' key={nanoid()}>
-            <span>Avance creado por {avance.CreatedBy.Name +" "+ avance.CreatedBy.Lastname}</span>
+            <span className='font-semibold'>Avance creado por {avance.CreatedBy.Name +" "+ avance.CreatedBy.Lastname}</span>
             <p> {avance.Observations} </p>
           </div>)
         })) : ( <></> ))
@@ -154,7 +157,7 @@ const Objetivo = ({ tipo, descripcion }) => {
   );
 };
 
-const InscripcionProyecto = ({ idProyecto, estado, estadoInscripcion }) => {
+const InscripcionProyecto = ({ idProyecto, estado, estadoInscripcion, refetch }) => {
   const [crearInscripcion, { data, loading, error }] = useMutation(CREAR_INSCRIPCION);
   const { userData } = useUser();
 
@@ -168,14 +171,14 @@ const InscripcionProyecto = ({ idProyecto, estado, estadoInscripcion }) => {
 
   const confirmarInscripcion = () => {
     crearInscripcion({ variables: { Project: idProyecto, Student: userData._id } });
+    refetch()
   };
-
   return (
     <>
       {(estadoInscripcion !== '') ? (
-        <span>you are already enrolled on this project - Status: {estadoInscripcion}</span>
+        <span className='font-bold'>You are already enrolled on this project - Status: {estadoInscripcion}</span>
       ) : (
-      <button onClick={() => confirmarInscripcion()} disabled={estado === 'INACTIVE'} type='submit'
+      <button onClick={() =>{ confirmarInscripcion()}} disabled={estado === 'INACTIVE'} type='submit'
           className='bg-indigo-700 text-white font-bold text-lg py-3 px-6  rounded-xl
           hover:bg-indigo-500 shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700'>
           {loading ? <ReactLoading type='spin' height={30} width={30} /> : <div>Enroll</div>}

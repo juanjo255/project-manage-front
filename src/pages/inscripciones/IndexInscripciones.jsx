@@ -17,18 +17,20 @@ import ReactLoading from 'react-loading';
 const IndexInscripciones = () => {
   const { data, loading, error, refetch } = useQuery(GET_INSCRIPCIONES);
   const {userData} = useUser();
+
   useEffect(() => {
     if (error){
       toast.error("Error cargando inscripciones")
     }
-  }, [error])
+  }, [error,data])
 
   if (loading) return <div><ReactLoading type='spin' height={30} width={30} /></div>;
+
   if (data && userData){
     return (
       <PrivateRoute roleList={['ADMINISTRATOR', 'LEADER']}>
         <div className='p-10'>
-          <div>INSCRIPTIONS</div>
+          <div className='flex justify-center font-extrabold text-4xl'>INSCRIPTIONS</div>
           <div className='my-4'>
             <AccordionInscripcion
               titulo='Approved inscriptions'
