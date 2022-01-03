@@ -2,15 +2,17 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
-
-const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
-  backgroundColor: '#919191',
+//(props) => {return <Accordion {...props} />}
+//(props) => {return <AccordionSummary {...props} />}
+//(props) => {return <AccordionDetails {...props} />}
+const AccordionStyled = styled(Accordion)(({ theme }) => ({
+  background: 'linear-gradient(#1589FF, #95B9C7)',
 }));
-const AccordionSummaryStyled = styled((props) => <AccordionSummary {...props} />)(({ theme }) => ({
-  backgroundColor: '#919191',
+const AccordionSummaryStyled = styled(AccordionSummary)(({ theme }) => ({
+  backgroundColor: 'linear-gradient(indigo, black)',
 }));
-const AccordionDetailsStyled = styled((props) => <AccordionDetails {...props} />)(({ theme }) => ({
-  backgroundColor: '#ccc',
+const AccordionDetailsStyled = styled(AccordionDetails)(({ theme }) => ({
+  backgroundColor: '#95B9C7',
 }));
 
 export { AccordionStyled, AccordionSummaryStyled, AccordionDetailsStyled };

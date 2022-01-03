@@ -4,7 +4,10 @@
 @tailwind utilities;
 
 .sidebar {
-  @apply w-64 bg-blue-500 shadow flex-col justify-between;
+  @apply w-64  shadow flex-col justify-between;
+}
+.probando {
+  background: linear-gradient(#1589FF, #95B9C7);
 }
 
 .sidebar-route {

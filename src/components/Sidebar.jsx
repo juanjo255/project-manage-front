@@ -54,7 +54,7 @@ const Sidebar = () => {
     <div className='flex flex-col md:flex-row flex-no-wrap md:h-full'>
     {/* Sidebar starts */}
 
-    <div className='sidebar hidden md:flex'>
+    <div className='sidebar probando hidden md:flex'>
       <div className='px-8'>
         <Logo />
         <SidebarLinks />
