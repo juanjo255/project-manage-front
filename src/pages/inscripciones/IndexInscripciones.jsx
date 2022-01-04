@@ -24,7 +24,9 @@ const IndexInscripciones = () => {
     }
   }, [error,data])
 
-  if (loading) return <div><ReactLoading type='spin' height={30} width={30} /></div>;
+  if (loading) { return <div className='flex flex-col h-screen justify-center items-center'>
+    <ReactLoading  type={"cubes"} color={"#0080FF"} height={'30%'} width={'10%'} />
+    </div>; }
 
   if (data && userData){
     return (

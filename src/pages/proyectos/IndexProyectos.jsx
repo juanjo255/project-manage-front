@@ -41,11 +41,11 @@ const IndexProyectos = () => {
     return (
       <div className='p-10 flex flex-col '>
         <div className='flex w-full items-center justify-center'>
-          <h1 className='text-2xl font-bold text-gray-900'>PROJECT LIST</h1>
+          <h1 className='flex justify-center font-extrabold text-4xl'>PROJECT LIST</h1>
         </div>
         <PrivateComponent roleList={['ADMINISTRATOR', 'LEADER']}>
           <div className='my-2 self-end'>
-            <button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>
+            <button className='bg-indigo-500 text-gray-50 font-medium p-2 rounded-lg shadow-lg hover:bg-indigo-400'>
               <Link to='/proyectos/nuevo'>Create project</Link>
             </button>
           </div>

@@ -22,7 +22,7 @@ import Profile from 'pages/profile/Profile';
 // import PrivateRoute from 'components/PrivateRoute';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql' // link del back
+  uri: 'https://management-project-back2021.herokuapp.com/graphql' // link del back
 });
 
 const authLink = setContext((_, { headers }) => {

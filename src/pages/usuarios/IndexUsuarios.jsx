@@ -15,15 +15,14 @@ const IndexUsuarios = () => {
         }
     }, [error]);
 
-    if (loading) {
-        return <div className='flex flex-col justify-center items-center h-screen  bg-black'>
-            <ReactLoading  type={"spinningBubbles"} color={"#0080FF"} height={'30%'} width={'10%'} />
-            </div>;
-    }
+    if (loading) { return <div className='flex flex-col h-screen justify-center items-center'>
+    <ReactLoading  type={"cubes"} color={"#0080FF"} height={'30%'} width={'10%'} />
+    </div>; }
+
     return (
         <PrivateRoute roleList={['ADMINISTRATOR','LEADER']}>
         <div>
-            <div className='flex justify-center text-2xl font-bold text-gray-900 my-5'>Datos Usuarios</div>
+            <div className='flex justify-center font-extrabold text-4xl my-5'>Datos Usuarios</div>
             <table className='tabla w-screen overflow-hidden tableSizeScreen '>
                 <thead>
                     <tr>
