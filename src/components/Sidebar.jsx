@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
 import PrivateComponent from './PrivateComponent';
 import researchProject from 'media/EAFITlogo.png'
-import { useEffect } from 'react';
+
 
 const SidebarLinks = () => {
   return (
