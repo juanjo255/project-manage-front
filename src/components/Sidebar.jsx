@@ -51,9 +51,6 @@ const Logo = () => {
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  useEffect (()=>{
-    console.log("open", open);
-  },[open])
 
   return (
     <div className='flex flex-col md:flex-row flex-no-wrap h-full absolute md:static'>
@@ -67,7 +64,7 @@ const Sidebar = () => {
     </div>
     <div className='flex md:hidden w-full justify-between bg-black p-2 text-white '>
       <button type='button' onClick={() => setOpen(!open)}>
-        <i className={`${open ? 'fas fa-times' : 'fas fa-bars'} cursor-pointer`}/>
+        <i className={`${open ? ('fas fa-times') : ('fas fa-bars')} cursor-pointer`}/>
       </button>
     </div>
     {open && <ResponsiveSidebar  />}
