@@ -33,18 +33,20 @@ const IndexProyectos = () => {
   }, [error])
 
 
-  if (loading) return <div><ReactLoading type='spin' height={30} width={30} /></div>;
+  if (loading)  {return <div className='flex flex-col justify-center items-center h-screen  bg-black'>
+  <ReactLoading  type={"spinningBubbles"} color={"#0080FF"} height={'30%'} width={'10%'} />
+  </div>;}
   
   if (queryData && userData) {
     return (
-      <div className='p-10 flex flex-col'>
+      <div className='p-10 flex flex-col '>
         <div className='flex w-full items-center justify-center'>
           <h1 className='text-2xl font-bold text-gray-900'>PROJECT LIST</h1>
         </div>
         <PrivateComponent roleList={['ADMINISTRATOR', 'LEADER']}>
           <div className='my-2 self-end'>
             <button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>
-              <Link to='/proyectos/nuevo'>Create new project</Link>
+              <Link to='/proyectos/nuevo'>Create project</Link>
             </button>
           </div>
         </PrivateComponent>
@@ -83,7 +85,9 @@ const AccordionProyecto = ({ proyecto, refetch }) => {
     }
   }, [userData, proyecto.Inscriptions]);
 
-  if (loading){return <div>Loading...</div> };
+  if (loading){ return <div>
+  <ReactLoading  type={"cubes"} color={"#0080FF"} height={'30%'} width={'10%'} />
+  </div>; };
   
   return (
     <div>

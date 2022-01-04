@@ -17,3 +17,20 @@
 .input {
   @apply p-2 border border-indigo-200 focus:outline-none focus:border-indigo-800 rounded-md shadow-sm;
 }
+
+.organizarBloques{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
+}
+
+@media  (max-width:1080px) {
+    .tableSizeScreen {
+      display: none
+    }
+  }
+
+@media  (min-width:1080px) {
+    .cardSizeScreen {
+      display: none
+    }
+  }

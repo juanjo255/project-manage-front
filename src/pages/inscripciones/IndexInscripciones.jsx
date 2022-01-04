@@ -100,28 +100,29 @@ const Inscripcion = ({ inscripcion, refetch }) => {
       <span>{inscripcion.Project.NameProject}</span>
       <span>{inscripcion.Student.Name}</span>
       <span>{inscripcion.Inscription_State}</span>
-      {inscripcion.Inscription_State === 'PENDING' && ( <div className='flex flex-col'>
-        <ButtonLoading
-          onClick={(e) => {
-            cambiarEstadoInscripcion(e.target.value);
-          }}
-          text='Approve'
-          loading={loading}
-          disabled={false}
-          color="green"
-          value ="ACCEPTED"
-        />
-        <ButtonLoading
-          onClick={(e) => {
-            cambiarEstadoInscripcion(e.target.value);
-          }}
-          text='Reject'
-          loading={loading}
-          disabled={false}
-          color="red"
-          value="REJECTED"
-        />
-      </div>
+      {inscripcion.Inscription_State === 'PENDING' && (
+        <div className= {`flex flex-col`}>
+          <ButtonLoading
+            onClick={(e) => {
+              cambiarEstadoInscripcion(e.target.value);
+            }}
+            text='Approve'
+            loading={loading}
+            disabled={false}
+            color="green"
+            value ="ACCEPTED"
+          />
+          <ButtonLoading
+            onClick={(e) => {
+              cambiarEstadoInscripcion(e.target.value);
+            }}
+            text='Reject'
+            loading={loading}
+            disabled={false}
+            color="red"
+            value="REJECTED"
+          />
+        </div>
         
       )}
     </div>

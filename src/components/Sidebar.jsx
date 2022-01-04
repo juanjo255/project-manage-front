@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
 import PrivateComponent from './PrivateComponent';
 import researchProject from 'media/EAFITlogo.png'
+import { useEffect } from 'react';
 
 const SidebarLinks = () => {
   return (
@@ -49,9 +50,13 @@ const Logo = () => {
 };
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  useEffect (()=>{
+    console.log("open", open);
+  },[open])
+
   return (
-    <div className='flex flex-col md:flex-row flex-no-wrap md:h-full'>
+    <div className='flex flex-col md:flex-row flex-no-wrap h-full absolute md:static'>
     {/* Sidebar starts */}
 
     <div className='sidebar acordion hidden md:flex'>
@@ -60,30 +65,27 @@ const Sidebar = () => {
         <SidebarLinks />
       </div>
     </div>
-    <div className='flex md:hidden w-full justify-between bg-black p-2 text-white'>
+    <div className='flex md:hidden w-full justify-between bg-black p-2 text-white '>
       <button type='button' onClick={() => setOpen(!open)}>
-        <i className={`fas fa-${open ? 'hamburger' : 'bars'}`}/>
+        <i className={`${open ? 'fas fa-times' : 'fas fa-bars'} cursor-pointer`}/>
       </button>
     </div>
-    {open && <ResponsiveSidebar />}
+    {open && <ResponsiveSidebar  />}
     {/* Sidebar ends */}
   </div>
 );
 };
 
-const ResponsiveSidebar = () => {
+const ResponsiveSidebar = (open) => {
   return (
-    <div>
       <div
-        className='sidebar h-full z-40 absolute md:h-full sm:hidden transition duration-150 ease-in-out'
-        id='mobile-nav'
-      >
+        className= {`h-full md:hidden acordion  `}
+        id='mobile-nav'>
         <div className='px-8'>
           <Logo />
           <SidebarLinks />
         </div>
       </div>
-    </div>
   );
 };
 
@@ -95,7 +97,7 @@ const SidebarRoute = ({ to, title, icon }) => {
         className={({ isActive }) =>
           isActive
             ? 'sidebar-route border-t-2 border-b-2 font-extrabold border-white text-white'
-            : 'sidebar-route font-bold text-gray-900 hover:text-black hover:bg-green-700'
+            : 'sidebar-route font-bold text-gray-900 hover:text-black hover:bg-blue-700'
         }>
         <div className='flex items-center'>
           <i className={icon} />

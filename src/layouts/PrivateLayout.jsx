@@ -38,12 +38,14 @@ const PrivateLayout = () => {
   }, [dataMutation, setToken, loadingAuth, navigate]);
 
   if (loadingMutation || loadingAuth) 
-  return <div><ReactLoading className='flex flex-col content-center' type={"spokes"} color={"#0080FF"} height={'20%'} width={'20%'} /></div>; 
+  return <div className='flex flex-col justify-center items-center h-screen  bg-black'>
+    <ReactLoading  type={"spinningBubbles"} color={"#0080FF"} height={'30%'} width={'10%'} />
+    </div>; 
 
   return (
-    <div className='flex flex-col md:flex-row flex-no-wrap h-screen'>
+    <div className='flex h-screen relative '>
       <Sidebar />
-      <div className='flex w-full h-full'>
+      <div className='flex w-full h-full '>
         <div className='w-full h-full  overflow-y-scroll'>
           <Outlet />
         </div>
