@@ -6,7 +6,7 @@ import { LOGIN } from 'graphql/auth/mutations';
 import { useAuth } from 'context/authContext';
 import { useNavigate } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import wave from 'media/wave.png'
+import wave from 'media/wave1.jpg'
 import logo from 'media/EAFITlogo.png'
 import { toast } from 'react-toastify';
 
