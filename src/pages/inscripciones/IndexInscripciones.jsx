@@ -62,7 +62,9 @@ const AccordionInscripcion = ({ data, titulo, refetch = () => {} }) => {
   return (
     <AccordionStyled >
       <AccordionSummaryStyled>
-        {titulo} ({data.length})
+        <span className='text-white font-medium uppercase'>
+          {titulo} ({data.length})
+        </span>
       </AccordionSummaryStyled>
       <AccordionDetailsStyled>
         <div className='flex'>
