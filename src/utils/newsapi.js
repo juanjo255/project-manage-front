@@ -2,12 +2,12 @@ import axios from "axios";
 
 const options = {
   method: 'GET',
-  url: 'http://api.mediastack.com/v1/news',
+  url: 'https://newsdata.io/api/1/news',
   params: {
-    access_key: '294c6270c630557c63b313753e118859',
-    categories:'science, health',
-    languages:'en, es'
-}
+    apikey: 'pub_345506c2b60367ec03bd16e2faad0bc4965e',
+    language:"en, es",
+    category:"science, health, technology"
+  }
 };
 
 const newsapi = async (successCallback) => {

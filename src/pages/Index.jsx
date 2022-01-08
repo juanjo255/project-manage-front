@@ -7,7 +7,7 @@ const Index = () => {
   const [noticias, setNoticias] = useState();
 
   useEffect(() => {
-    newsapi((res) => setNoticias(res.data.data));
+    newsapi((res) => setNoticias(res.data.results));
   }, []);
 
   useEffect(() => {
@@ -39,11 +39,11 @@ const Newcard = ({ newinfo }) => {
   return (
     <div className="flex flex-col py-5 border-t-2 my-3 bg-gray-200 rounded-3xl items-center shadow-lg hover:bg-gray-800">
       <span className="flex text-gray-400  justify-start">
-        Published at {newinfo.published_at.slice(0, 10)}
+        Published at {newinfo.pubDate.slice(0, 10)}
       </span>
       <a href={newinfo.url}>
         <img
-          src={newinfo.image}
+          src={newinfo.image_url}
           alt={newinfo.title}
           className=" rounded-lg shadow-lg  "
         />
