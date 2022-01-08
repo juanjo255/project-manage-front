@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
 import PrivateComponent from './PrivateComponent';
-import researchProject from 'media/EAFITlogo.png'
+import logo from 'media/beakerLogo.png'
 
 
 const SidebarLinks = () => {
   const [click, setClick] = useState(true)
   return (
     <ul className='mt-12' onClick={()=>setClick(!click)}>
-      <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
+      <SidebarRoute to='' title='Home' icon='fas fa-home' />
       <PrivateComponent roleList={['ADMINISTRATOR']}>
-        <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user-friends' />
+        <SidebarRoute to='/usuarios' title='Users' icon='fas fa-user-friends' />
       </PrivateComponent>
-      <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-tasks' />
+      <SidebarRoute to='/proyectos' title='Projects' icon='fas fa-tasks' />
       <PrivateComponent roleList={['ADMINISTRATOR', 'LEADER']}>
-        <SidebarRoute to='/inscripciones' title='Aprobacion Inscripciones' icon='fas fa-scroll' />
+        <SidebarRoute to='/inscripciones' title='Inscriptions Approval' icon='fas fa-scroll' />
       </PrivateComponent>
-      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user' />
+      <SidebarRoute to='/perfil' title='Profile' icon='fas fa-user' />
       
       <Logout />
     </ul>
@@ -35,7 +35,7 @@ const Logout = () => {
       <NavLink to='/auth/login' className='sidebar-route'>
         <div className='flex items-center text-red-600'>
           <i className='fas fa-sign-out-alt' />
-          <span className='font-bold text-black text-sm  ml-2'>Cerrar Sesión</span>
+          <span className='font-bold text-black text-sm  ml-2'>Log out</span>
         </div>
       </NavLink>
     </li>
@@ -44,8 +44,8 @@ const Logout = () => {
 
 const Logo = () => {
   return (
-    <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src={researchProject} alt='Logo' className='w-40' />
+    <div className=' w-full flex justify-around  '>
+      <img src={logo} alt='Logo' className='w-20 mt-5' />
     </div>
   );
 };
@@ -57,7 +57,7 @@ const Sidebar = () => {
     <div className='flex flex-col md:flex-row flex-no-wrap h-screen absolute md:static md:border-black md:border-solid md:border-r-4'>
     {/* Sidebar starts */}
     <div className='sidebar acordion hidden md:flex'>
-      <div className='px-8'>
+      <div className='flex flex-col' >
         <Logo />
         <SidebarLinks />
       </div>

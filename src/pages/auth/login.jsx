@@ -11,7 +11,6 @@ import logo from "media/beakerLogo.png";
 import { toast } from "react-toastify";
 import { Dialog, DialogTitle, DialogContent, List, ListItem} from "@mui/material";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const { setToken } = useAuth();
@@ -25,7 +24,6 @@ const Login = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-
     login({
       variables: formData,
     });
@@ -41,6 +39,7 @@ const Login = () => {
       toast.error("Error en el Login");
     }
   }, [dataMutation, setToken, navigate, mutationError]);
+
 
   return (
     <div className="flex overflow-x-hidden ">
@@ -65,7 +64,7 @@ const Login = () => {
               name="Email"
               type="text"
               placeholder="email"
-              className="pl-8 border-b-2 font-display focus:outline-none focus:border-blue-800 transition-all duration-500 capitalize text-lg"
+              className="pl-8 border-b-2 font-display focus:outline-none focus:border-blue-800 transition-all duration-500 text-lg"
               required={true}
             />
           </div>
@@ -75,7 +74,7 @@ const Login = () => {
               name="Password"
               type="password"
               placeholder="password"
-              className="pl-8 border-b-2 font-display focus:outline-none focus:border-blue-800 transition-all duration-500 capitalize text-lg"
+              className="pl-8 border-b-2 font-display focus:outline-none focus:border-blue-800 transition-all duration-500 text-lg"
               required={true}
             />
           </div>
@@ -101,7 +100,7 @@ const Login = () => {
       <Dialog open={open} onClose={()=>(setOpen(false))}>
         <DialogTitle sx={{fontWeight:800}} >Research Projects</DialogTitle>
         <DialogContent className=" font-semibold">On this page, students can enroll in research projects of 
-          their interest, so here we find 3 Roles:
+          their interest. Here we find 3 Roles:
         </DialogContent>
         <List >
           <ListItem className="dialog">

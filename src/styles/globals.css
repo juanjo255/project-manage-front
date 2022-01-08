@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display+SC:ital,wght@1,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +12,7 @@
 }
 
 .sidebar-route {
-  @apply  rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
+  @apply  rounded-md flex  justify-between cursor-pointer items-center m-3 p-3;
 }
 
 .input {
@@ -22,6 +23,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
 }
+
+.newsfont {
+  font-family: 'Bebas Neue', cursive;
+}
+.indexTitle {
+  font-family: 'Playfair Display SC', serif;
+}
+
 
 @media  (max-width:1080px) {
     .tableSizeScreen {
