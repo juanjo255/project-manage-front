@@ -50,7 +50,7 @@ const Newcard = ({ newinfo }) => {
       <span className=" newsfont text-base lg:text-2xl w-full my-3 ">
         {newinfo.title}
       </span>
-      <p className="text-gray-500  ">{newinfo.description}</p>
+      <p className="text-gray-500 newsContentFont ">{newinfo.description}</p>
     </div>
   );
 };
