@@ -7,12 +7,13 @@ const Index = () => {
   const [noticias, setNoticias] = useState();
 
   useEffect(() => {
-    newsapi((res) => setNoticias(res.data.results));
+    newsapi((res) => setNoticias(res.data.data));
   }, []);
 
   useEffect(() => {
     if (noticias) {
       noticias.map((res) => console.log(res));
+      //console.log(noticias);
     }
   }, [noticias]);
   return (
@@ -38,11 +39,11 @@ const Newcard = ({ newinfo }) => {
   return (
     <div className="flex flex-col py-5 border-t-2 my-3 bg-gray-200 rounded-3xl items-center shadow-lg hover:bg-gray-800">
       <span className="flex text-gray-400  justify-start">
-        Published at {newinfo.pubDate.slice(0, 10)}
+        Published at {newinfo.published_at.slice(0, 10)}
       </span>
       <a href={newinfo.url}>
         <img
-          src={newinfo.image_url}
+          src={newinfo.image}
           alt={newinfo.title}
           className=" rounded-lg shadow-lg  "
         />
@@ -50,7 +51,7 @@ const Newcard = ({ newinfo }) => {
       <span className=" newsfont text-base lg:text-2xl w-full my-3 ">
         {newinfo.title}
       </span>
-      <p className="text-gray-500 newsContentFont ">{newinfo.description}</p>
+      {/* <p className="text-gray-500 newsContentFont ">{newinfo.description}</p> */}
     </div>
   );
 };
