@@ -27,6 +27,11 @@
     .tableSizeScreen {
       display: none
     }
+    .dialog {
+      display: flex;
+      flex-direction: column;
+      font-weight: 600;
+    }
   }
 
 @media  (min-width:1080px) {
