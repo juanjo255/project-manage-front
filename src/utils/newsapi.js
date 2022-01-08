@@ -2,8 +2,8 @@ import axios from "axios";
 
 const options = {
   method: 'GET',
-  url: 'https://newsapi.org/v2/everything',
-  params: {q: 'cells', apiKey: '9ef7b9b1697041dfba0eb0b202edca0c'}
+  url: 'https://newsdata.io/api/1/news',
+  params: {apikey: 'pub_345599f9e2862b7b5793d5e8eeae0e677c79'}
 };
 
 const newsapi = async (successCallback) => {
