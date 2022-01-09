@@ -6,7 +6,8 @@ const options = {
   params: {
     apikey: 'pub_345506c2b60367ec03bd16e2faad0bc4965e',
     language:"en, es",
-    category:"science, health, technology"
+    category:"science, health",
+    q:"cell OR cells OR covid"
   }
 };
 

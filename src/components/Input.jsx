@@ -8,7 +8,6 @@ const Input = ({ label, name, defaultValue, type, required, readOnly, disabled=f
         required={required}
         type={type}
         name={name}
-        placeholder={name}
         className='input'
         defaultValue={defaultValue}
         readOnly={readOnly}

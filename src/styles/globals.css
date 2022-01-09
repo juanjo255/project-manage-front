@@ -34,6 +34,16 @@
   font-family: 'Playfair Display SC', serif;
 }
 
+.zoom .zoomPen {
+  transition: transform .2s;
+}
+
+.zoom:hover{
+  transform: scale(1.05);
+}
+.zoomPen:hover{
+  transform: scale(1.25);
+}
 
 @media  (max-width:1080px) {
     .tableSizeScreen {

@@ -6,7 +6,8 @@ const ButtonLoading = ({
   loading,
   text,
   onClick = () => {},
-  color = "indigo",
+  color = "bg-indigo-700",
+  colorHover="bg-indigo-500",
   value = "",
 }) => {
   return (
@@ -16,7 +17,7 @@ const ButtonLoading = ({
       disabled={disabled}
       type="submit"
       value={value}
-      className={`bg-${color}-700 text-white font-bold text-lg py-3 px-3  rounded-xl hover:bg-${color}-500 shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700`}
+      className={`${color} text-white font-bold text-lg py-3 px-3  rounded-xl hover:${colorHover} shadow-md my-2 disabled:opacity-50 disabled:bg-gray-700`}
     >
       {loading ? (
         <ReactLoading

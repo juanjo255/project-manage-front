@@ -8,8 +8,6 @@ const GET_INSCRIPCIONES = gql`
       Student {
         _id
         Name
-        Lastname
-        Email
       }
       Project {
         _id

@@ -19,6 +19,7 @@ const IndexInscripciones = () => {
   const {userData} = useUser();
 
   useEffect(() => {
+    console.log(data, error);
     if (error){
       toast.error("Error cargando inscripciones")
     }
@@ -62,7 +63,7 @@ const AccordionInscripcion = ({ data, titulo, refetch = () => {} }) => {
   return (
     <AccordionStyled >
       <AccordionSummaryStyled>
-        <span className='text-white font-medium uppercase'>
+        <span className='text-black font-medium uppercase'>
           {titulo} ({data.length})
         </span>
       </AccordionSummaryStyled>
@@ -100,7 +101,7 @@ const Inscripcion = ({ inscripcion, refetch }) => {
   };
 
   return (
-    <div className='bg-gray-900 text-gray-50 flex flex-col p-6 m-2 rounded-lg shadow-xl'>
+    <div className='bg-gray-900 text-white flex flex-col p-6 m-2 rounded-lg shadow-xl'>
       <span>{inscripcion.Project.NameProject}</span>
       <span>{inscripcion.Student.Name}</span>
       <span>{inscripcion.Inscription_State}</span>
@@ -113,7 +114,8 @@ const Inscripcion = ({ inscripcion, refetch }) => {
             text='Approve'
             loading={loading}
             disabled={false}
-            color="green"
+            color="bg-green-700"
+            colorHover="bg-green-500"
             value ="ACCEPTED"
           />
           <ButtonLoading
@@ -123,7 +125,8 @@ const Inscripcion = ({ inscripcion, refetch }) => {
             text='Reject'
             loading={loading}
             disabled={false}
-            color="red"
+            color="bg-red-700"
+            colorHover="bg-red-500"
             value="REJECTED"
           />
         </div>

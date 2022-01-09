@@ -49,7 +49,7 @@ const IndexUsuarios = () => {
                             <td>{Enum_EstadoUsuario[campo.State]}</td>
                             <td>
                                 <Link to={`/usuarios/editar/${campo._id}`}>
-                                    <i className='fas fa-pen' />
+                                    <i className='fas fa-pen zoomPen' />
                                 </Link>
                             </td>
                             </tr>
@@ -66,18 +66,17 @@ const IndexUsuarios = () => {
                     <>
                         {data.Users.map((campo) => {
                         return (
-                            <div key={campo._id} className=' m-5 bg-indigo-300  p-5 rounded-2xl flex flex-col '>
+                            <div key={campo._id} className=' m-5 bg-gray-800  p-5 rounded-2xl flex flex-col '>
                                 <span className='flex justify-end'>
                                     <Link to={`/usuarios/editar/${campo._id}`}>
-                                        <i className='fas fa-pen' />
+                                        <i className='fas fa-pen text-gray-200 zoomPen' />
                                     </Link>
                                 </span>
-                                <span className='uppercase font-medium '>{campo.Name}</span>
-                                <span className='uppercase font-medium'>{campo.Lastname}</span>
-                                <span className='font-medium'>{campo.Email}</span>
-                                <span className='font-medium'>{campo.Identification}</span>
-                                <span className='uppercase font-medium'>{Enum_Rol[campo.Role]}</span>
-                                <span className=' uppercase font-medium'>{Enum_EstadoUsuario[campo.State]}</span>
+                                <span className='uppercase font-medium text-white'>{campo.Name}</span>
+                                <span className='uppercase font-medium text-white'>{campo.Lastname}</span>
+                                <span className='font-medium text-white'>{campo.Email}</span>
+                                <span className='font-medium text-white'>{campo.Identification}</span>
+                                <span className='uppercase font-medium text-white'>{Enum_Rol[campo.Role]}</span>
                             </div>
                         );
                         })}
